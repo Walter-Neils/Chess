@@ -1,0 +1,48 @@
+{
+  "pieceName": "pawn",
+  "moves": [
+    {
+      "type": "slide",
+      "offset": {
+        "x": 0,
+        "y": 1
+      },
+      "isCapture": false,
+      "isFirstMove": false,
+      "offsetMode": "absolute"
+    },
+    {
+      "type": "slide",
+      "offset": {
+        "x": 0,
+        "y": 2
+      },
+      "isCapture": false,
+      "isFirstMove": true,
+      "offsetMode": "absolute"
+    },
+    {
+      "type": "slide",
+      "offset": {
+        "x": 1,
+        "y": 1
+      },
+      "isCapture": true,
+      "isFirstMove": false,
+      "offsetMode": "absolute"
+    },
+    {
+      "type": "slide",
+      "offset": {
+        "x": -1,
+        "y": 1
+      },
+      "isCapture": true,
+      "isFirstMove": false,
+      "offsetMode": "absolute"
+    }
+
+  ],
+  "pieceValue": 1,
+  "pieceIcon": "pawn-{color}-{variant}"
+}

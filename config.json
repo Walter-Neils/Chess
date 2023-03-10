@@ -1,0 +1,28 @@
+{
+    "ChessBoard": {
+        "raycast": {
+            "debug": false
+        }
+    },
+    "ChessPieceInstance": {
+        "debug": {
+            "moveRemoval": true
+        },
+        "movechecks": {
+            "update": {
+                "unprompted": false
+            }
+        },
+        "movement": {
+            "forceEnableCaptureMoves": false
+        },
+        "render": {
+            "captureMoveSquares": {
+                "state": false
+            }
+        }
+    },
+    "PieceController": {
+        "debug": true
+    }
+}

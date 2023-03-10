@@ -1,0 +1,16 @@
+{
+    "title": "Pawn and Queen",
+    "id": 1,
+    "piecePositions": [
+        {
+            "pieceType": "queen",
+            "x": 0,
+            "y": 0
+        },
+        {
+            "pieceType": "pawn",
+            "x": 4,
+            "y": 0
+        }
+    ]
+}

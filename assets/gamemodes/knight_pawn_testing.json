@@ -1,0 +1,16 @@
+{
+    "title": "Knight Pawn Testing",
+    "id": 2,
+    "piecePositions": [
+        {
+            "pieceType": "pawn",
+            "x": 0,
+            "y": 0
+        },
+        {
+            "pieceType": "knight",
+            "x": 4,
+            "y": 0
+        }
+    ]
+}
