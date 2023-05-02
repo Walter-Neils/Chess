@@ -84,8 +84,8 @@ sf::Vector2i ChessBoard::getBoardPosition(sf::Vector2f screenPosition)
 sf::Vector2i ChessBoard::getBoardPosition(sf::Vector2i screenPosition)
 {
     auto window      = getRenderState()->getWindow();
-    auto squareSizeX = window->getView().getSize().x / 8;
-    auto squareSizeY = window->getView().getSize().y / 8;
+    auto squareSizeX = static_cast<int>(window->getSize().x) / 8;
+    auto squareSizeY = static_cast<int>(window->getSize().y) / 8;
     sf::Vector2i result = {static_cast<int>(screenPosition.x / squareSizeX), static_cast<int>(screenPosition.y / squareSizeY)};
     if(result.x < 0 || result.x > 7 || result.y < 0 || result.y > 7)
     {

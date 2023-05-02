@@ -317,4 +317,5 @@ ChessPieceInstance::~ChessPieceInstance()
 {
     renderContext->removeRenderable(this);
     renderContext->removeBehaviour(this);
+    LOG("ChessPieceInstance destroyed");
 }

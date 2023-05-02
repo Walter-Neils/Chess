@@ -1,12 +1,12 @@
 {
     "ChessBoard": {
         "raycast": {
-            "debug": true
+            "debug": false
         }
     },
     "ChessPieceInstance": {
         "debug": {
-            "moveRemoval": true
+            "moveRemoval": false
         },
         "movechecks": {
             "update": {
@@ -18,11 +18,11 @@
         },
         "render": {
             "captureMoveSquares": {
-                "state": true
+                "state": false
             }
         }
     },
     "PieceController": {
-        "debug": true
+        "debug": false
     }
 }
