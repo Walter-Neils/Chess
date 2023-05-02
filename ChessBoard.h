@@ -44,6 +44,8 @@ public:
         return rayCast(start, direction, distance, [](ChessPieceInstance*) { return false; });
     }
 
+    bool capturePiece(ChessPieceInstance* piece);
+
     friend class ChessPieceInstance;
 };
 

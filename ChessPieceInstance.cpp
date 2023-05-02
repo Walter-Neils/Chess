@@ -49,57 +49,6 @@ void ChessPieceInstance::render()
             renderContext->getWindow()->draw(validMove);
         }
     }
-    bool renderAttackOnlySquareStates = getConfigurationValue<bool>("render.captureMoveSquares.state", false);
-    if (renderAttackOnlySquareStates && getIsSelected()) {
-        std::vector<sf::Vector2i> availableMoves;
-        std::vector<sf::Vector2i> unavailableMoves;
-        for (auto& move: pieceBehaviour->getMoves()) {
-            unavailableMoves.push_back({move.x, move.y});
-        }
-        for (auto& move: getValidMoves()) {
-            std::erase_if(unavailableMoves, [&](const auto& unavailableMove) {
-                bool isSame = unavailableMove.x == move.x && unavailableMove.y == move.y;
-                if (isSame) {
-                    availableMoves.push_back(move);
-                }
-                return isSame;
-            });
-        }
-
-        /*
-         * sf::RectangleShape rect;
-            rect.setSize({chessBoard->getSquareSizeX(), chessBoard->getSquareSizeY()});
-            rect.setPosition(
-                    chessBoard->getAbsoluteScreenPosition(sf::Vector2i(position.x + move.x, position.y + move.y)));
-            rect.setFillColor(sf::Color(255, 0, 0, 175));
-            rect.setOutlineColor(sf::Color(255, 0, 0, 255));
-            rect.setOutlineThickness(4);
-            renderContext->getWindow()->draw(rect);*/
-
-        for (auto& move: unavailableMoves) {
-            sf::RectangleShape rect;
-            rect.setSize({chessBoard->getSquareSizeX(), chessBoard->getSquareSizeY()});
-            rect.setPosition(
-                    chessBoard->getAbsoluteScreenPosition(sf::Vector2i(position.x + move.x, position.y + move.y)));
-            rect.setFillColor(sf::Color(255, 0, 0, 175));
-            rect.setOutlineColor(sf::Color(255, 0, 0, 255));
-            rect.setOutlineThickness(4);
-            renderContext->getWindow()->draw(rect);
-        }
-
-        for (auto& move: availableMoves) {
-            sf::RectangleShape rect;
-            rect.setSize({chessBoard->getSquareSizeX(), chessBoard->getSquareSizeY()});
-            rect.setPosition(
-                    chessBoard->getAbsoluteScreenPosition(sf::Vector2i(position.x + move.x, position.y + move.y)));
-            rect.setFillColor(sf::Color(0, 255, 0, 175));
-            rect.setOutlineColor(sf::Color(0, 255, 0, 255));
-            rect.setOutlineThickness(4);
-            renderContext->getWindow()->draw(rect);
-        }
-
-
-    }
 }
 
 void ChessPieceInstance::update()
@@ -176,8 +125,6 @@ std::vector<sf::Vector2i> ChessPieceInstance::getValidMoves()
 
 
     for (auto& move: moveBase) {
-
-
         if (move.offsetMode == "absolute") {
             if (move.type == "slide") {
                 auto raycastStart = position;
@@ -364,4 +311,10 @@ void ChessPieceInstance::setIsSelected(bool newValue)
 bool ChessPieceInstance::getIsSelected() const
 {
     return isSelected;
+}
+
+ChessPieceInstance::~ChessPieceInstance()
+{
+    renderContext->removeRenderable(this);
+    renderContext->removeBehaviour(this);
 }

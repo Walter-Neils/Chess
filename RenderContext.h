@@ -31,7 +31,11 @@ public:
 
     void addRenderable(IRenderable* renderable);
 
+    bool removeRenderable(IRenderable* renderable);
+
     void addBehaviour(IBehaviour* behaviour);
+
+    bool removeBehaviour(IBehaviour* behaviour);
 
     template<typename T>
     void addItem(T* item);

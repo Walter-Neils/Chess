@@ -27,7 +27,7 @@ int main()
         AssetLoader assetLoader(&renderState);
         assetLoader.loadAssets();
 
-        std::vector<ChessPieceInstance*> pieces = assetLoader.getGameMode(4)->load(&chessBoard, &renderState,
+        std::vector<ChessPieceInstance*> pieces = assetLoader.getGameMode(2)->load(&chessBoard, &renderState,
                                                                                    &assetLoader);
 
         PieceController pieceController(&renderState, &inputHandler, &chessBoard, pieces);
@@ -47,6 +47,7 @@ int main()
                 if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
                     window.close();
                     restart = true;
+                    break;
                 }
             }
 

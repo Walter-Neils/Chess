@@ -143,3 +143,14 @@ std::vector<ChessPieceInstance*> ChessBoard::rayCast(sf::Vector2i start, sf::Vec
 
     return pieces;
 }
+
+bool ChessBoard::capturePiece(ChessPieceInstance* piece)
+{
+    auto it = std::find(pieces.begin(), pieces.end(), piece);
+    if (it != pieces.end()) {
+        pieces.erase(it);
+        delete piece; // Chess piece instance is no longer needed
+        return true;
+    }
+    return false;
+}

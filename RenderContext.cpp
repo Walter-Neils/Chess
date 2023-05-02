@@ -96,4 +96,26 @@ void RenderContext::update()
     }
 }
 
+bool RenderContext::removeRenderable(IRenderable* renderable)
+{
+    for (auto it = renderables.begin(); it != renderables.end(); ++it) {
+        if (*it == renderable) {
+            renderables.erase(it);
+            return true;
+        }
+    }
+    return false;
+}
+
+bool RenderContext::removeBehaviour(IBehaviour* behaviour)
+{
+    for (auto it = behaviours.begin(); it != behaviours.end(); ++it) {
+        if (*it == behaviour) {
+            behaviours.erase(it);
+            return true;
+        }
+    }
+    return false;
+}
+
 

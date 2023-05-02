@@ -39,6 +39,8 @@ public:
     ChessPieceInstance(PieceBehaviour* pieceBehaviour, ChessBoard* chessBoard, RenderContext* renderContext,
                        const sf::Vector2i& position, bool isWhite);
 
+    ~ChessPieceInstance() override;
+
     void render() override;
 
     void update() override;

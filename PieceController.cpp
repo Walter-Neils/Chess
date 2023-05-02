@@ -52,8 +52,15 @@ void PieceController::update()
             // Check if the selected tile is a valid move
             auto         validMoves    = selectedPiece->getValidMoves();
             if (std::find(validMoves.begin(), validMoves.end(), selectedTile) != validMoves.end()) {
-                // Move the piece
-                selectedPiece->setPosition(selectedTile);
+
+                {
+                    // Move the piece
+                    auto piece = chessBoard->getPieceAtPosition(selectedTile);
+                    if (piece != nullptr) {
+                        chessBoard->capturePiece(piece);
+                    }
+                    selectedPiece->setPosition(selectedTile);
+                }
                 selectedPiece->setRenderValidMoves(false);
                 selectedPiece->setIsSelected(false);
                 selectedPiece = nullptr;
