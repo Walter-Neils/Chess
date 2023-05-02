@@ -29,13 +29,20 @@ public:
     void scalePieceSprite(sf::Sprite& sprite);
 
     sf::Vector2i getBoardPosition(sf::Vector2f screenPosition);
+
     sf::Vector2i getBoardPosition(sf::Vector2i screenPosition);
 
     ChessPieceInstance* getPieceAtPosition(sf::Vector2i position);
 
     bool isPieceAtPosition(sf::Vector2i position);
 
-    std::vector<ChessPieceInstance*> rayCast(sf::Vector2i start, sf::Vector2i direction, int distance);
+    std::vector<ChessPieceInstance*>
+    rayCast(sf::Vector2i start, sf::Vector2i direction, int distance, std::function<bool(ChessPieceInstance*)> ignore);
+
+    inline std::vector<ChessPieceInstance*> rayCast(sf::Vector2i start, sf::Vector2i direction, int distance)
+    {
+        return rayCast(start, direction, distance, [](ChessPieceInstance*) { return false; });
+    }
 
     friend class ChessPieceInstance;
 };

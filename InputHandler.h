@@ -33,6 +33,8 @@ public:
 
     sf::Vector2i getMousePosition();
 
+    bool isMouseInWindow();
+
     void update();
 
     void garbageCollect();

@@ -104,17 +104,22 @@ bool ChessBoard::isPieceAtPosition(sf::Vector2i position)
     return false;
 }
 
-std::vector<ChessPieceInstance*> ChessBoard::rayCast(sf::Vector2i start, sf::Vector2i direction, int distance)
+std::vector<ChessPieceInstance*> ChessBoard::rayCast(sf::Vector2i start, sf::Vector2i direction, int distance, std::function<bool(ChessPieceInstance*)> ignorePred)
 {
+    if(distance < 0)
+    {
+        throw std::invalid_argument("Distance must be greater than 0");
+    }
+
     std::vector<ChessPieceInstance*> pieces;
     bool consoleDebug = getConfigurationValue<bool>("raycast.debug", false);
 
     if(consoleDebug)
     {
-        std::cout << "Raycast: [";
+        std::cout << "Raycast @ " << "(" << start.x << ", " << start.y << ") " << "Direction: (" << direction.x << ", " << direction.y << ") Distance: " << distance << " : [";
     }
     for (int                         i = 0; i <= distance; i++) {
-        auto position = start + direction * i;
+        auto position = start + (direction * i);
         auto piece = getPieceAtPosition(position);
         if (piece != nullptr) {
             if(consoleDebug)
@@ -132,5 +137,9 @@ std::vector<ChessPieceInstance*> ChessBoard::rayCast(sf::Vector2i start, sf::Vec
     {
         std::cout << "]" << std::endl;
     }
+
+    // Remove pieces that are ignored
+    pieces.erase(std::remove_if(pieces.begin(), pieces.end(), ignorePred), pieces.end());
+
     return pieces;
 }

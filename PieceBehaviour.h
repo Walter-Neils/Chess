@@ -16,6 +16,12 @@ struct Move
     bool        isCapture;
     int         x;
     int         y;
+
+    bool operator==(const Move& rhs) const
+    {
+        return type == rhs.type && offsetMode == rhs.offsetMode && isFirstMove == rhs.isFirstMove &&
+               isCapture == rhs.isCapture && x == rhs.x && y == rhs.y;
+    }
 };
 
 class PieceBehaviour

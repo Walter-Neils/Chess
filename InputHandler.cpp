@@ -57,3 +57,10 @@ void InputHandler::garbageCollect()
         }
     }
 }
+
+bool InputHandler::isMouseInWindow()
+{
+    sf::Vector2i mousePosition = getMousePosition();
+    return mousePosition.x >= 0 && mousePosition.x <= static_cast<int>(window->getSize().x) && mousePosition.y >= 0 &&
+           mousePosition.y <= static_cast<int>(window->getSize().y);
+}

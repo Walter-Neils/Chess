@@ -17,7 +17,7 @@
 
 class ChessBoard;
 
-class ChessPieceInstance : public IRenderable, public IBehaviour, public CorruptionDetector<256>, public Configuration
+class ChessPieceInstance : public IRenderable, public IBehaviour, public Configuration
 {
 private:
     PieceBehaviour* pieceBehaviour;
@@ -34,6 +34,7 @@ private:
     bool         isWhite;
     bool         hasBeenMoved     = false;
     bool         renderValidMoves = false;
+    bool         isSelected       = false;
 public:
     ChessPieceInstance(PieceBehaviour* pieceBehaviour, ChessBoard* chessBoard, RenderContext* renderContext,
                        const sf::Vector2i& position, bool isWhite);
@@ -49,6 +50,10 @@ public:
     bool getRenderValidMoves();
 
     void setPosition(const sf::Vector2i& position);
+
+    void setIsSelected(bool isSelected);
+
+    [[nodiscard]] bool getIsSelected() const;
 
     [[nodiscard]] sf::Vector2i getPosition() const;
 

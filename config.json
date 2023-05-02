@@ -1,7 +1,7 @@
 {
     "ChessBoard": {
         "raycast": {
-            "debug": false
+            "debug": true
         }
     },
     "ChessPieceInstance": {
@@ -18,7 +18,7 @@
         },
         "render": {
             "captureMoveSquares": {
-                "state": false
+                "state": true
             }
         }
     },

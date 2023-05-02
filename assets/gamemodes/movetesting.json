@@ -1,0 +1,31 @@
+{
+    "title": "Pawns",
+    "id": 4,
+    "piecePositions": [
+        {
+            "pieceType": "pawn",
+            "x": 0,
+            "y": 3
+        },
+        {
+            "pieceType": "pawn",
+            "x": 1,
+            "y": 3
+        },
+        {
+            "pieceType": "pawn",
+            "x": 2,
+            "y": 3
+        },
+        {
+            "pieceType": "pawn",
+            "x": 3,
+            "y": 3
+        },
+        {
+            "pieceType": "pawn",
+            "x": 4,
+            "y": 3
+        }
+    ]
+}

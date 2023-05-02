@@ -21,18 +21,22 @@ PieceController::PieceController(RenderContext* renderContext, InputHandler* inp
 
 void PieceController::update()
 {
+    // Is the mouse even in the window?
+    if (!inputHandler->isMouseInWindow()) {
+        return; // It's not. All the logic below requires the mouse to be in the window.
+    }
     bool consoleDebug = getConfigurationValue<bool>("debug", false);
     if (selectedPiece == nullptr) {
         if (inputHandler->isMouseButtonPressed(sf::Mouse::Left) && !isMousePressed) {
-            isMousePressed = true;
+            isMousePressed             = true;
             sf::Vector2i mousePosition = inputHandler->getMousePosition();
             auto         selectedTile  = chessBoard->getBoardPosition(mousePosition);
             auto         piece         = chessBoard->getPieceAtPosition(selectedTile);
             if (piece != nullptr) {
                 selectedPiece = piece;
                 selectedPiece->setRenderValidMoves(true);
-                if(consoleDebug)
-                {
+                selectedPiece->setIsSelected(true);
+                if (consoleDebug) {
                     LOG("Selected piece at position: " + std::to_string(selectedTile.x) + ", " +
                         std::to_string(selectedTile.y));
                     LOG("Valid moves: " + std::to_string(selectedPiece->getValidMoves().size()));
@@ -51,18 +55,18 @@ void PieceController::update()
                 // Move the piece
                 selectedPiece->setPosition(selectedTile);
                 selectedPiece->setRenderValidMoves(false);
+                selectedPiece->setIsSelected(false);
                 selectedPiece = nullptr;
-                if(consoleDebug)
-                {
+                if (consoleDebug) {
                     LOG("Moved piece to position: " + std::to_string(selectedTile.x) + ", " +
                         std::to_string(selectedTile.y));
                 }
             }
             else {
                 selectedPiece->setRenderValidMoves(false);
+                selectedPiece->setIsSelected(false);
                 selectedPiece = nullptr;
-                if(consoleDebug)
-                {
+                if (consoleDebug) {
                     LOG("De-selected piece");
                 }
             }
