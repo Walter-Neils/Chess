@@ -22,7 +22,7 @@ ChessPieceInstance::ChessPieceInstance(PieceBehaviour* pieceBehaviour, ChessBoar
 
     chessBoard->pieces.push_back(this);
 
-    auto textureName = pieceBehaviour->getIconName(false, isWhite);
+    auto textureName = pieceBehaviour->getIconName(isWhite);
 
     sprite.setTexture(renderContext->getTexture(textureName));
     sprite.setPosition(chessBoard->getAbsoluteScreenPosition(position));
@@ -35,13 +35,12 @@ ChessPieceInstance::ChessPieceInstance(PieceBehaviour* pieceBehaviour, ChessBoar
     else {
         this->spriteBackground.setFillColor(sf::Color(0, 255, 0, 150));
     }
-
 }
 
 void ChessPieceInstance::render()
 {
     spriteBackground.setPosition(sprite.getPosition());
-    renderContext->getWindow()->draw(spriteBackground);
+    //renderContext->getWindow()->draw(spriteBackground);
     renderContext->getWindow()->draw(sprite);
 
     if (renderValidMoves) {

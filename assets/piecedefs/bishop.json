@@ -1,0 +1,47 @@
+{
+    "pieceName": "bishop",
+    "moves": [
+        {
+            "type": "slide",
+            "offset": {
+                "x": 1,
+                "y": 1
+            },
+            "isCapture": false,
+            "isFirstMove": false,
+            "offsetMode": "multiple"
+        },
+        {
+            "type": "slide",
+            "offset": {
+                "x": 1,
+                "y": -1
+            },
+            "isCapture": false,
+            "isFirstMove": false,
+            "offsetMode": "multiple"
+        },
+        {
+            "type": "slide",
+            "offset": {
+                "x": -1,
+                "y": -1
+            },
+            "isCapture": false,
+            "isFirstMove": false,
+            "offsetMode": "multiple"
+        },
+        {
+            "type": "slide",
+            "offset": {
+                "x": -1,
+                "y": 1
+            },
+            "isCapture": false,
+            "isFirstMove": false,
+            "offsetMode": "multiple"
+        }
+    ],
+    "pieceValue": 4,
+    "pieceIcon": "bishop-{color}"
+}

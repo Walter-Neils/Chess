@@ -46,7 +46,7 @@ public:
 
     [[maybe_unused]][[nodiscard]] const std::string& getIconNameRaw() const;
 
-    [[nodiscard]] std::string getIconName(bool isWhite, bool isOutlined) const;
+    [[nodiscard]] std::string getIconName(bool isWhite) const;
 
     static PieceBehaviour from_json(const nlohmann::json& j);
 };

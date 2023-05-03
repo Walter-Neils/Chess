@@ -55,18 +55,15 @@ PieceBehaviour PieceBehaviour::from_json(const nlohmann::json& j)
     return pieceBehaviour;
 }
 
-std::string PieceBehaviour::getIconName(bool isWhite, bool isOutlined) const
+std::string PieceBehaviour::getIconName(bool isWhite) const
 {
-    // Icon names are stored as literal "knight-{color}-{variant}.png"
+    // Icon names are stored as literal "knight-{color}.png"
     // where {color} is either "white" or "black" and {variant} is either "outlined" or "filled"
 
-    std::string color   = isWhite ? "white" : "black";
-    std::string variant = isOutlined ? "outlined" : "filled";
-
+//    std::string color   = isWhite ? "white" : "black";
+    std::string color   = isWhite ? "gold" : "red";
     // replace the {color} and {variant} placeholders with the actual values
     std::string iconName = this->iconName;
     iconName.replace(iconName.find("{color}"), 7, color);
-    iconName.replace(iconName.find("{variant}"), 9, variant);
-
     return iconName;
 }

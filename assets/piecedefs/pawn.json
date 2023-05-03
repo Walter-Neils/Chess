@@ -44,5 +44,5 @@
 
   ],
   "pieceValue": 1,
-  "pieceIcon": "pawn-{color}-{variant}"
+  "pieceIcon": "pawn-{color}"
 }

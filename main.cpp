@@ -27,7 +27,7 @@ int main()
         AssetLoader assetLoader(&renderState);
         assetLoader.loadAssets();
 
-        std::vector<ChessPieceInstance*> pieces = assetLoader.getGameMode(2)->load(&chessBoard, &renderState,
+        std::vector<ChessPieceInstance*> pieces = assetLoader.getGameMode(0)->load(&chessBoard, &renderState,
                                                                                    &assetLoader);
 
         PieceController pieceController(&renderState, &inputHandler, &chessBoard, pieces);

@@ -83,5 +83,5 @@
     }
   ],
   "pieceValue": 3,
-  "pieceIcon": "knight-{color}-{variant}"
+  "pieceIcon": "knight-{color}"
 }

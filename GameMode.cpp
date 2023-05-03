@@ -49,7 +49,8 @@ GameMode::GameMode(nlohmann::json json)
     for (const auto& piecePosition: piecePositionsJson) {
         this->piecePositions.emplace_back(piecePosition);
     }
-    LOG("Deserialized GameMode: " + title << " (" << id << ") " << " with " + std::to_string(piecePositions.size()) + " piece positions.");
+    LOG("Deserialized GameMode: " + title << " (" << id << ") "
+                                          << " with " + std::to_string(piecePositions.size()) + " piece positions.");
 }
 
 const std::string& GameMode::getTitle() const
@@ -67,24 +68,33 @@ const std::vector<PiecePosition>& GameMode::getPiecePositions() const
     return piecePositions;
 }
 
-std::vector<ChessPieceInstance*> GameMode::load(ChessBoard* chessBoard, RenderContext* renderContext, AssetLoader* assetLoader)
+std::vector<ChessPieceInstance*>
+GameMode::load(ChessBoard* chessBoard, RenderContext* renderContext, AssetLoader* assetLoader)
 {
     std::vector<ChessPieceInstance*> pieceInstances;
     for (const auto& piecePosition: piecePositions) {
-        auto pieceBehaviour = assetLoader->getPieceBehaviour(piecePosition.getPieceType());
-        auto pieceInstance  = new ChessPieceInstance(pieceBehaviour, chessBoard, renderContext, {piecePosition.getX(), piecePosition.getY()}, false);
-        pieceInstances.push_back(pieceInstance);
+        try {
+            auto pieceBehaviour = assetLoader->getPieceBehaviour(piecePosition.getPieceType());
+            auto pieceInstance  = new ChessPieceInstance(pieceBehaviour, chessBoard, renderContext,
+                                                         {piecePosition.getX(), piecePosition.getY()}, false);
+            pieceInstances.push_back(pieceInstance);
+        }
+        catch (...) {}
     }
     for (auto piecePosition: piecePositions) {
-        // Other side of the board
-        piecePosition = PiecePosition(piecePosition.getPieceType(), 7 - piecePosition.getX(), 7 - piecePosition.getY());
+        try {
+            // Other side of the board
+            piecePosition = PiecePosition(piecePosition.getPieceType(), 7 - piecePosition.getX(),
+                                          7 - piecePosition.getY());
 
-        auto pieceBehaviour = assetLoader->getPieceBehaviour(piecePosition.getPieceType());
-        auto pieceInstance  = new ChessPieceInstance(pieceBehaviour, chessBoard, renderContext, {piecePosition.getX(), piecePosition.getY()}, true);
-        pieceInstances.push_back(pieceInstance);
+            auto pieceBehaviour = assetLoader->getPieceBehaviour(piecePosition.getPieceType());
+            auto pieceInstance  = new ChessPieceInstance(pieceBehaviour, chessBoard, renderContext,
+                                                         {piecePosition.getX(), piecePosition.getY()}, true);
+            pieceInstances.push_back(pieceInstance);
+        }
+        catch (...) {}
     }
-    for(auto& instance : pieceInstances)
-    {
+    for (auto& instance: pieceInstances) {
         renderContext->addItem(instance);
     }
     LOG("Loaded GameMode " << title);

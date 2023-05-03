@@ -83,5 +83,5 @@
     }
   ],
   "pieceValue": 9,
-  "pieceIcon": "queen-{color}-{variant}"
+  "pieceIcon": "queen-{color}"
 }
