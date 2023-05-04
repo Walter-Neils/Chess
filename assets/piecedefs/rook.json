@@ -42,6 +42,6 @@
             "offsetMode": "multiple"
         }
     ],
-    "pieceValue": 9,
+    "pieceValue": 4,
     "pieceIcon": "rook-{color}"
 }

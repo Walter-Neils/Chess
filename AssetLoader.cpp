@@ -120,3 +120,14 @@ GameMode* AssetLoader::getGameMode(int id)
 
     throw std::runtime_error("Could not find game mode for id: " + std::to_string(id));
 }
+
+sf::Font* AssetLoader::getFont(const std::string& fontName)
+{
+    if (fonts.find(fontName) == fonts.end()) {
+        sf::Font font;
+        font.loadFromFile("./assets/fonts/" + fontName + ".ttf");
+        fonts[fontName] = font;
+    }
+
+    return &fonts[fontName];
+}

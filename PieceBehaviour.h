@@ -31,12 +31,13 @@ private:
     std::vector<Move> moves;
     int               value = -1;
     std::string       iconName;
+    bool requiredPiece = false;
 private:
     PieceBehaviour() = default;
 
 public:
     PieceBehaviour(const std::string& pieceName, const std::vector<Move>& moves, int value,
-                   const std::string& iconName);
+                   const std::string& iconName, bool requiredPiece);
 
     [[nodiscard]] const std::string& getPieceName() const;
 
@@ -47,6 +48,8 @@ public:
     [[maybe_unused]][[nodiscard]] const std::string& getIconNameRaw() const;
 
     [[nodiscard]] std::string getIconName(bool isWhite) const;
+
+    [[nodiscard]] bool isPieceRequired() const;
 
     static PieceBehaviour from_json(const nlohmann::json& j);
 };

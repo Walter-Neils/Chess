@@ -17,7 +17,7 @@ add_compile_options(-pedantic -Wuninitialized -Wall -Wextra -Wcast-align -Wcast-
 # Treat warnings as errors (because we're not savages)
 add_compile_options(-Werror)
 
-add_executable(Chess main.cpp IRenderable.cpp IRenderable.h IRenderable.cpp RenderContext.cpp RenderContext.h ChessBoard.cpp ChessBoard.h InputHandler.cpp InputHandler.h InputHandlerEventStream.cpp InputHandlerEventStream.h AssetLoader.cpp AssetLoader.h IBehaviour.cpp IBehaviour.h PieceBehaviour.cpp PieceBehaviour.h ChessPieceInstance.cpp ChessPieceInstance.h Logging.h GameMode.cpp GameMode.h PieceController.cpp PieceController.h CorruptionDetector.h MemoryWatcher.h Configuration.cpp Configuration.h)
+add_executable(Chess main.cpp IRenderable.cpp IRenderable.h IRenderable.cpp RenderContext.cpp RenderContext.h ChessBoard.cpp ChessBoard.h InputHandler.cpp InputHandler.h InputHandlerEventStream.cpp InputHandlerEventStream.h AssetLoader.cpp AssetLoader.h IBehaviour.cpp IBehaviour.h PieceBehaviour.cpp PieceBehaviour.h ChessPieceInstance.cpp ChessPieceInstance.h Logging.h GameMode.cpp GameMode.h PieceController.cpp PieceController.h CorruptionDetector.h MemoryWatcher.h Configuration.cpp Configuration.h HeatmapWindow.cpp HeatmapWindow.h AIPlayer.cpp AIPlayer.h Cleanup.h)
 
 # Link SFML library
 target_link_libraries(Chess sfml-graphics sfml-window sfml-system)

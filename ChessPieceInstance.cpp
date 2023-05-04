@@ -40,7 +40,14 @@ ChessPieceInstance::ChessPieceInstance(PieceBehaviour* pieceBehaviour, ChessBoar
 void ChessPieceInstance::render()
 {
     spriteBackground.setPosition(sprite.getPosition());
-    //renderContext->getWindow()->draw(spriteBackground);
+    if(isRequiredPiece())
+    {
+        auto incomingPieces = chessBoard->getPiecesCapableOfMovingToPosition(position);
+        if(!incomingPieces.empty())
+        {
+            renderContext->getWindow()->draw(spriteBackground);
+        }
+    }
     renderContext->getWindow()->draw(sprite);
 
     if (renderValidMoves) {
@@ -256,6 +263,11 @@ std::vector<sf::Vector2i> ChessPieceInstance::getValidMoves()
         }
     }
 
+    // Remove moves that are outside the board
+    validMoves.erase(std::remove_if(validMoves.begin(), validMoves.end(), [&](const sf::Vector2i& move) {
+        return move.x < 0 || move.x > 7 || move.y < 0 || move.y > 7;
+    }), validMoves.end());
+
     this->validMoveEndPositions = validMoves;
     return validMoves;
 }
@@ -317,4 +329,26 @@ ChessPieceInstance::~ChessPieceInstance()
     renderContext->removeRenderable(this);
     renderContext->removeBehaviour(this);
     LOG("ChessPieceInstance destroyed");
+    chessBoard->addScore(!isWhite, pieceBehaviour->getValue());
+}
+
+bool ChessPieceInstance::isRequiredPiece() const
+{
+    return pieceBehaviour->isPieceRequired();
+}
+
+bool ChessPieceInstance::canMoveToPosition(sf::Vector2i position)
+{
+    auto validMoves = getValidMoves();
+    for (auto validMove: validMoves) {
+        if (validMove == position) {
+            return true;
+        }
+    }
+    return false;
+}
+
+int ChessPieceInstance::getValue() const
+{
+    return pieceBehaviour->getValue();
 }

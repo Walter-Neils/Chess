@@ -26,7 +26,8 @@ private:
 public:
     PieceController(RenderContext* renderContext, InputHandler* inputHandler, ChessBoard* chessBoard, const std::vector<ChessPieceInstance*>& pieces);
     void update() override;
-
+    void movePiece(ChessPieceInstance* piece, const sf::Vector2i& position);
+    bool runWinChecks(bool team);
 };
 
 

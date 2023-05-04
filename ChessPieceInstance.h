@@ -45,11 +45,17 @@ public:
 
     void update() override;
 
+    /*
+     * Returns a vector of all valid moves for this piece.
+     * The sf::Vector2i instances indicate an absolute position on the board, not a position relative to the piece.
+     */
     std::vector<sf::Vector2i> getValidMoves();
 
     void setRenderValidMoves(bool renderValidMoves);
 
     bool getRenderValidMoves();
+
+    bool isRequiredPiece() const;
 
     void setPosition(const sf::Vector2i& position);
 
@@ -66,6 +72,10 @@ public:
     [[nodiscard]] PieceBehaviour* getPieceBehaviour() const;
 
     [[nodiscard]] sf::Sprite* getSprite();
+
+    [[nodiscard]] int getValue() const;
+
+    bool canMoveToPosition(sf::Vector2i position);
 
     friend class ChessBoard;
 };

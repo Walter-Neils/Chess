@@ -83,5 +83,6 @@
         }
     ],
     "pieceValue": 9,
-    "pieceIcon": "king-{color}"
+    "pieceIcon": "king-{color}",
+    "requiredPiece": true
 }

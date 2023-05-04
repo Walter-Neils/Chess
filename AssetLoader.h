@@ -17,6 +17,7 @@ private:
     RenderContext* renderContext;
     std::vector<PieceBehaviour> pieceBehaviours;
     std::vector<GameMode> gameModes;
+    std::map<std::string, sf::Font> fonts;
 public:
     explicit AssetLoader(RenderContext* renderContext);
 
@@ -29,6 +30,8 @@ public:
     [[nodiscard]] const std::vector<GameMode>& getGameModes() const;
 
     [[nodiscard]] GameMode* getGameMode(int id);
+
+    [[nodiscard]] sf::Font* getFont(const std::string& fontName);
 private:
     void loadPieceBehaviours();
     void loadGameModes();

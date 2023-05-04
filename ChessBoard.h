@@ -13,12 +13,27 @@ class ChessPieceInstance;
 
 class ChessBoard : public IRenderable, public Configuration
 {
+private:
+    std::optional<bool> mWinner;
+    int mWhiteScore = 0;
+    int mBlackScore = 0;
+    bool mCurrentTurn = true;
+    int round = 0;
 public:
     std::vector<ChessPieceInstance*> pieces;
+    std::optional<bool>& winner = mWinner; // Cheap way to make a read-only reference
+    const int& whiteScore = mWhiteScore;
+    const int& blackScore = mBlackScore;
+    const bool& currentTurn = mCurrentTurn;
+    const int& currentRound = round;
+
+    void nextTurn();
 
     ChessBoard(RenderContext* renderState, int zIndex);
 
     void render() override;
+
+    void addScore(bool team, int score);
 
     sf::Vector2f getAbsoluteScreenPosition(sf::Vector2i boardPosition);
 
@@ -44,7 +59,13 @@ public:
         return rayCast(start, direction, distance, [](ChessPieceInstance*) { return false; });
     }
 
-    bool capturePiece(ChessPieceInstance* piece);
+    std::vector<ChessPieceInstance*> getPiecesCapableOfMovingToPosition(sf::Vector2i position);
+
+    void capturePiece(ChessPieceInstance* piece);
+
+    void checkForCheckmate(bool team);
+
+    bool isPositionInDanger(sf::Vector2i position, bool team);
 
     friend class ChessPieceInstance;
 };
